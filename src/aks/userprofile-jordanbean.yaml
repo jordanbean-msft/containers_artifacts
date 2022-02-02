@@ -20,6 +20,29 @@ spec:
         image: registryltt9233.azurecr.io/jordanbean/userprofile:1.0
         ports:
         - containerPort: 80
+        env:
+        - name: SQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: sql-creds
+              key: sql-user
+        - name: SQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: sql-creds
+              key: sql-password
+        - name: SQL_SERVER
+          valueFrom:
+            secretKeyRef:
+              name: sql-creds
+              key: sql-server
+        - name: SQL_DBNAME
+          valueFrom:
+            secretKeyRef:
+              name: sql-creds
+              key: sql-dbname
+        - name: CREDENTIAL_METHOD
+          value: username_and_password
 
 ---
 
