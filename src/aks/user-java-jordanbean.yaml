@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tripinsights-backendend-user-java-deployment
+  namespace: tripinsights-backend
+  labels:
+    app: tripinsights-backend-user-java
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tripinsights-backend-user-java
+  template:
+    metadata:
+      labels:
+        app: tripinsights-backend-user-java
+    spec:
+      containers:
+      - name: user-java
+        image: registryltt9233.azurecr.io/jordanbean/user-java:1.0
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: tripinsights-backend-user-java-service
+  namespace: tripinsights-backend
+spec:
+  selector:
+    app: tripinsights-backend-user-java
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

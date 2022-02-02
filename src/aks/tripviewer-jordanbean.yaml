@@ -20,6 +20,11 @@ spec:
         image: registryltt9233.azurecr.io/jordanbean/tripviewer:1.0
         ports:
         - containerPort: 80
+        env:
+        - name: TRIPS_API_ENDPOINT
+          value: http://tripinsights-backend-trips-service.tripinsights-backend
+        - name: USERPROFILE_API_ENDPOINT
+          value: http://tripinsights-backend-userprofile-service.tripinsights-backend
 
 ---
 

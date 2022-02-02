@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tripinsights-backendend-trips-deployment
+  namespace: tripinsights-backend
+  labels:
+    app: tripinsights-backend-trips
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tripinsights-backend-trips
+  template:
+    metadata:
+      labels:
+        app: tripinsights-backend-trips
+    spec:
+      containers:
+      - name: trips
+        image: registryltt9233.azurecr.io/jordanbean/trips:1.0
+        ports:
+        - containerPort: 80
+        env:
+        - name: SQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: sql-creds
+              key: sql-user
+        - name: SQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: sql-creds
+              key: sql-password
+        - name: SQL_SERVER
+          valueFrom:
+            secretKeyRef:
+              name: sql-creds
+              key: sql-server
+        - name: SQL_DBNAME
+          valueFrom:
+            secretKeyRef:
+              name: sql-creds
+              key: sql-dbname
+        - name: CREDENTIAL_METHOD
+          value: username_and_password
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: tripinsights-backend-trips-service
+  namespace: tripinsights-backend
+spec:
+  selector:
+    app: tripinsights-backend-trips
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
