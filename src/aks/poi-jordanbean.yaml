@@ -21,28 +21,41 @@ spec:
         ports:
         - containerPort: 80
         env:
-        - name: SQL_USER
-          valueFrom:
-            secretKeyRef:
-              name: sql-creds
-              key: sql-user
-        - name: SQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: sql-creds
-              key: sql-password
-        - name: SQL_SERVER
-          valueFrom:
-            secretKeyRef:
-              name: sql-creds
-              key: sql-server
-        - name: SQL_DBNAME
-          valueFrom:
-            secretKeyRef:
-              name: sql-creds
-              key: sql-dbname
+        # - name: SQL_USER
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: sql-keyvault-secrets
+        #       key: sql-user
+        # - name: SQL_PASSWORD
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: sql-keyvault-secrets
+        #       key: sql-password
+        # - name: SQL_SERVER
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: sql-keyvault-secrets
+        #       key: sql-server
+        # - name: SQL_DBNAME
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: sql-keyvault-secrets
+        #       key: sql-db
+        - name: CONFIG_FILES_PATH
+          value: /mnt/secrets-store
         - name: CREDENTIAL_METHOD
           value: username_and_password
+        volumeMounts:
+        - name: tripinsights-azure-secrets-store
+          mountPath: "/mnt/secrets-store"
+          readOnly: true
+      volumes:
+        - name: tripinsights-azure-secrets-store
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "tripinsights-azure-kvname-user-msi"
 
 ---
 
