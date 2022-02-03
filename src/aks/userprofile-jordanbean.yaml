@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tripinsights-backendend-userprofile-deployment
+  name: tripinsights-backend-userprofile-deployment
   namespace: tripinsights-backend
   labels:
     app: tripinsights-backend-userprofile

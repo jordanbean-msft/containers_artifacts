@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tripinsights-backendend-trips-deployment
+  name: tripinsights-backend-trips-deployment
   namespace: tripinsights-backend
   labels:
     app: tripinsights-backend-trips

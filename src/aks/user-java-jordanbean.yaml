@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tripinsights-backendend-user-java-deployment
+  name: tripinsights-backend-user-java-deployment
   namespace: tripinsights-backend
   labels:
     app: tripinsights-backend-user-java

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tripinsights-backendend-poi-deployment
+  name: tripinsights-backend-poi-deployment
   namespace: tripinsights-backend
   labels:
     app: tripinsights-backend-poi
