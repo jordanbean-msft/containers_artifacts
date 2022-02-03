@@ -64,10 +64,3 @@ spec:
             name: tripinsights-frontend-tripviewer-service
             port:
               number: 80
-      - path: /asdf
-        pathType: Prefix
-        backend:
-          service:
-            name: tripinsights-frontend-tripviewer-service
-            port:
-              number: 80
