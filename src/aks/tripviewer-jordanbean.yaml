@@ -25,6 +25,8 @@ spec:
           value: http://tripinsights-backend-trips-service.tripinsights-backend
         - name: USERPROFILE_API_ENDPOINT
           value: http://tripinsights-backend-userprofile-service.tripinsights-backend
+        - name: DUMMY
+          value: asdf
 
 ---
 
