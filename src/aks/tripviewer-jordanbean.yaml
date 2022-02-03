@@ -6,7 +6,7 @@ metadata:
   labels:
     app: tripinsights-frontend-tripviewer
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       app: tripinsights-frontend-tripviewer
@@ -52,10 +52,17 @@ metadata:
     kubernetes.io/ingress.class: addon-http-application-routing
 spec:
   rules:
-  - host: aks-tripinsights-rjb.f37c5b85287c4749a5f4.westus.aksapp.io
+  - host: aks-tripinsights-rjb-secure.0c5da0aa7dac45c783b5.westus2.aksapp.io
     http:
       paths:
       - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: tripinsights-frontend-tripviewer-service
+            port:
+              number: 80
+      - path: /asdf
         pathType: Prefix
         backend:
           service:
