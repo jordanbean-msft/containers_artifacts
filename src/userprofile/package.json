@@ -20,7 +20,7 @@
         "lodash": "^4.17.15",
         "morgan": "^1.9.1",
         "prom-client": "^11.5.3",
-        "swagger-ui-express": "^4.0.6",
+        "swagger-ui-express": "^4.6.3",
         "swaggerize-express": "^4.0.5",
         "swaggerize-routes": "^1.0.11",
         "swagmock": "1.0.0",
